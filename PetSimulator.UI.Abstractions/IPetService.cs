@@ -5,9 +5,11 @@
         IEnumerable<IUiDisplayItem> GetPets();
         IEnumerable<IUiDisplayItem> GetActions(IUiDisplayItem pet);
 
-        IUiDisplayItem MakePet(PetType type, string name);
-
         IUiDisplayItem GetPet();
+
+        string MakePet(IUiDisplayItem petType, string petName);
+
+        string PerformAction(IUiDisplayItem action);
     }
 
 }

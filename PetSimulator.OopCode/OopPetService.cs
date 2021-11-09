@@ -4,9 +4,53 @@ namespace PetSimulator.OopCode
 {
     public class OopPetService : IPetService
     {
-        public IEnumerable<IUiDisplayItem> GetActions(IUiDisplayItem pet) => throw new NotImplementedException();
-        public IUiDisplayItem GetPet() => throw new NotImplementedException();
-        public IEnumerable<IUiDisplayItem> GetPets() => throw new NotImplementedException();
-        public IUiDisplayItem MakePet(PetType type, string name) => throw new NotImplementedException();
+        ObjectOrientedCodeSample _sample = new();
+
+        public IEnumerable<IUiDisplayItem> GetPets()
+            => GetNameValues<PetType>();
+
+        public IEnumerable<IUiDisplayItem> GetActions(IUiDisplayItem pet)
+            => GetNameValues<PetActionType>();
+
+        public IUiDisplayItem GetPet()
+        {
+            if (!_sample.IsCreated)
+                return UiDisplayItem.Empty;
+            return UiDisplayItem.Empty;
+        }
+
+
+        public string MakePet(IUiDisplayItem petType, string petName)
+        {
+            if (petType.Value == null)
+                throw new ArgumentException($"{nameof(petType)} must have a valid {typeof(PetType).FullName} value and cannot have a value of null.");
+            var t = (PetType)petType.Value;
+            return _sample.MakePet(t, petName);
+        }
+
+        public string PerformAction(IUiDisplayItem action)
+        {
+            if (!_sample.IsCreated)
+                throw new InvalidOperationException($"A pet must be created in order to perform an action.");
+            if (action.Value == null)
+                throw new ArgumentException($"{nameof(action)} must have a valid {typeof(PetActionType).FullName} value and cannot have a value of null.", nameof(action));
+            var act = (PetActionType)action.Value;
+
+            return _sample.Act(act);
+        }
+
+
+        private IEnumerable<IUiDisplayItem> GetNameValues<TEnum>() where TEnum : struct, Enum
+        {
+            var result = new List<IUiDisplayItem>();
+            var values = Enum.GetValues<TEnum>();
+            foreach (var value in values)
+            {
+                var name = Enum.GetName(value) ?? "";
+                result.Add(new UiDisplayItem(name, value));
+            }
+            return result;
+        }
+
     }
 }

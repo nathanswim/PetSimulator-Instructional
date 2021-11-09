@@ -39,12 +39,13 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
             this.petControlPanel = new System.Windows.Forms.Panel();
-            this.petListBox = new System.Windows.Forms.ListBox();
-            this.petActionListBox = new System.Windows.Forms.ListBox();
-            this.createPetButton = new System.Windows.Forms.Button();
-            this.performActionButton = new System.Windows.Forms.Button();
-            this.petNameLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.petNameLabel = new System.Windows.Forms.Label();
+            this.performActionButton = new System.Windows.Forms.Button();
+            this.createPetButton = new System.Windows.Forms.Button();
+            this.petActionListBox = new System.Windows.Forms.ListBox();
+            this.petListBox = new System.Windows.Forms.ListBox();
             this.mainTableLayoutPanel.SuspendLayout();
             this.sampleModePanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -158,16 +159,19 @@
             // 
             // closeButton
             // 
+            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeButton.Location = new System.Drawing.Point(869, 3);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(112, 41);
             this.closeButton.TabIndex = 0;
             this.closeButton.Text = "&Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // petControlPanel
             // 
             this.petControlPanel.Controls.Add(this.textBox1);
+            this.petControlPanel.Controls.Add(this.nameTextBox);
             this.petControlPanel.Controls.Add(this.petNameLabel);
             this.petControlPanel.Controls.Add(this.performActionButton);
             this.petControlPanel.Controls.Add(this.createPetButton);
@@ -179,41 +183,21 @@
             this.petControlPanel.Size = new System.Drawing.Size(734, 510);
             this.petControlPanel.TabIndex = 3;
             // 
-            // petListBox
+            // textBox1
             // 
-            this.petListBox.FormattingEnabled = true;
-            this.petListBox.ItemHeight = 25;
-            this.petListBox.Location = new System.Drawing.Point(7, 7);
-            this.petListBox.Name = "petListBox";
-            this.petListBox.Size = new System.Drawing.Size(273, 154);
-            this.petListBox.TabIndex = 0;
+            this.textBox1.Location = new System.Drawing.Point(298, 8);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(427, 485);
+            this.textBox1.TabIndex = 6;
             // 
-            // petActionListBox
+            // nameTextBox
             // 
-            this.petActionListBox.FormattingEnabled = true;
-            this.petActionListBox.ItemHeight = 25;
-            this.petActionListBox.Location = new System.Drawing.Point(7, 306);
-            this.petActionListBox.Name = "petActionListBox";
-            this.petActionListBox.Size = new System.Drawing.Size(273, 154);
-            this.petActionListBox.TabIndex = 1;
-            // 
-            // createPetButton
-            // 
-            this.createPetButton.Location = new System.Drawing.Point(131, 206);
-            this.createPetButton.Name = "createPetButton";
-            this.createPetButton.Size = new System.Drawing.Size(149, 34);
-            this.createPetButton.TabIndex = 2;
-            this.createPetButton.Text = "Create Pet";
-            this.createPetButton.UseVisualStyleBackColor = true;
-            // 
-            // performActionButton
-            // 
-            this.performActionButton.Location = new System.Drawing.Point(131, 466);
-            this.performActionButton.Name = "performActionButton";
-            this.performActionButton.Size = new System.Drawing.Size(149, 34);
-            this.performActionButton.TabIndex = 3;
-            this.performActionButton.Text = "Perform Action";
-            this.performActionButton.UseVisualStyleBackColor = true;
+            this.nameTextBox.Location = new System.Drawing.Point(79, 169);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(201, 31);
+            this.nameTextBox.TabIndex = 5;
             // 
             // petNameLabel
             // 
@@ -224,17 +208,49 @@
             this.petNameLabel.TabIndex = 4;
             this.petNameLabel.Text = "Name:";
             // 
-            // textBox1
+            // performActionButton
             // 
-            this.textBox1.Location = new System.Drawing.Point(79, 169);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(201, 31);
-            this.textBox1.TabIndex = 5;
+            this.performActionButton.Location = new System.Drawing.Point(131, 466);
+            this.performActionButton.Name = "performActionButton";
+            this.performActionButton.Size = new System.Drawing.Size(149, 34);
+            this.performActionButton.TabIndex = 3;
+            this.performActionButton.Text = "Perform Action";
+            this.performActionButton.UseVisualStyleBackColor = true;
+            this.performActionButton.Click += new System.EventHandler(this.performActionButton_Click);
+            // 
+            // createPetButton
+            // 
+            this.createPetButton.Location = new System.Drawing.Point(131, 206);
+            this.createPetButton.Name = "createPetButton";
+            this.createPetButton.Size = new System.Drawing.Size(149, 34);
+            this.createPetButton.TabIndex = 2;
+            this.createPetButton.Text = "Create Pet";
+            this.createPetButton.UseVisualStyleBackColor = true;
+            this.createPetButton.Click += new System.EventHandler(this.createPetButton_Click);
+            // 
+            // petActionListBox
+            // 
+            this.petActionListBox.FormattingEnabled = true;
+            this.petActionListBox.ItemHeight = 25;
+            this.petActionListBox.Location = new System.Drawing.Point(7, 306);
+            this.petActionListBox.Name = "petActionListBox";
+            this.petActionListBox.Size = new System.Drawing.Size(273, 154);
+            this.petActionListBox.TabIndex = 1;
+            // 
+            // petListBox
+            // 
+            this.petListBox.FormattingEnabled = true;
+            this.petListBox.ItemHeight = 25;
+            this.petListBox.Location = new System.Drawing.Point(7, 7);
+            this.petListBox.Name = "petListBox";
+            this.petListBox.Size = new System.Drawing.Size(273, 154);
+            this.petListBox.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.closeButton;
             this.ClientSize = new System.Drawing.Size(990, 689);
             this.Controls.Add(this.mainTableLayoutPanel);
             this.Name = "MainForm";
@@ -264,11 +280,12 @@
         private Button closeButton;
         private Button loadButton;
         private Panel petControlPanel;
-        private TextBox textBox1;
+        private TextBox nameTextBox;
         private Label petNameLabel;
         private Button performActionButton;
         private Button createPetButton;
         private ListBox petActionListBox;
         private ListBox petListBox;
+        private TextBox textBox1;
     }
 }

@@ -9,6 +9,8 @@ namespace PetSimulatorApp
         public MainForm()
         {
             InitializeComponent();
+            createPetButton.Enabled = false;
+            performActionButton.Enabled = false;
         }
 
         private IPetService _petService;
@@ -32,6 +34,7 @@ namespace PetSimulatorApp
 
         private void FillUi()
         {
+            createPetButton.Enabled = true;
             var pets = _petService.GetPets();
             petListBox.Items.Clear();
             petListBox.DataSource = pets;
@@ -46,7 +49,50 @@ namespace PetSimulatorApp
             petActionListBox.DisplayMember = "DisplayName";
         }
 
+        private void createPetButton_Click(object sender, EventArgs e)
+        {
+            var name = nameTextBox.Text;
+            if (string.IsNullOrWhiteSpace(name))
+                MessageBox.Show(this,
+                    "You must give your pet a name!",
+                    "ERROR - Missing Pet Name",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+            var petSelection = (IUiDisplayItem)petListBox.SelectedValue;
+
+            var createdPet = _petService.MakePet(petSelection, name);
+            PetDisplayClear();
+            PetDisplayAppendLine(createdPet);
+
+            performActionButton.Enabled = true;
+        }
+
+        private void performActionButton_Click(object sender, EventArgs e)
+        {
+            var actionSelection = (IUiDisplayItem)petActionListBox.SelectedValue;
+            var actionResult = _petService.PerformAction(actionSelection);
+            PetDisplayAppendLine(actionResult);
+        }
+
+        List<string> petDisplayLines = new List<string>();
+
+        private void PetDisplayClear()
+        {
+            petDisplayLines.Clear();
+            textBox1.Lines = petDisplayLines.ToArray();
+        }
 
 
+        private void PetDisplayAppendLine(string line)
+        {
+            petDisplayLines.Add(line);
+            textBox1.Lines = petDisplayLines.ToArray();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
