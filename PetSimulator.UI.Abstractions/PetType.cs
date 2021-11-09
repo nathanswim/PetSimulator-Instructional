@@ -5,6 +5,7 @@
         Cat,
         Dog,
         Bird,
+        Fish,
     }
 
 }

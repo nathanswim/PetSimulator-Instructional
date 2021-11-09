@@ -27,9 +27,23 @@ namespace PetSimulator.ProcCode
                     return DogAction(action);
                 case PetType.Bird:
                     return BirdAction(action);
+                case PetType.Fish:
+                    return FishAction(action);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(PetType));
             }
+        }
+
+        private string FishAction(PetActionType action)
+        {
+            return action switch
+            {
+                PetActionType.Eat => FishEat(),
+                PetActionType.Sleep => FishSleep(),
+                PetActionType.Walk => FishWalk(),
+                PetActionType.Speak => FishSpeak(),
+                _ => throw new ArgumentOutOfRangeException(nameof(action))
+            };
         }
 
         private string BirdAction(PetActionType action)
@@ -67,6 +81,12 @@ namespace PetSimulator.ProcCode
                 _ => throw new ArgumentOutOfRangeException(nameof(action))
             };
         }
+
+        private string FishSpeak() => $"{PetName} says, \"Blub! blub! blub!\"";
+        private string FishWalk() => $"{PetName} says \"What?!?!\" swishes tail and swims away";
+        private string FishSleep() => $"{PetName} levitate in water and stare blankly";
+        private string FishEat() => $"{PetName} approach surface and gulp.";
+
 
         private string BirdSpeak() => $"{PetName} says, \"Tweet! tweet! tweet!\"";
         private string BirdWalk() => $"{PetName} stretches wings and Flap! flap! flap!";

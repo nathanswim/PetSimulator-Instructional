@@ -61,9 +61,9 @@ namespace PetSimulatorApp
 
             var petSelection = (IUiDisplayItem)petListBox.SelectedValue;
 
-            var createdPet = _petService.MakePet(petSelection, name);
+            var greeting = _petService.MakePet(petSelection, name);
             PetDisplayClear();
-            PetDisplayAppendLine(createdPet);
+            PetDisplayAppendLine(greeting);
 
             performActionButton.Enabled = true;
         }
