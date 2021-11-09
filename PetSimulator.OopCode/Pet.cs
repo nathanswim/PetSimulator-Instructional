@@ -56,7 +56,6 @@ namespace PetSimulator.OopCode
         public override string Walk() => $"{Name} stretches wings and Flap! flap! flap!";
         public override string Sleep() => $"{Name} tucks head under wing and snore";
         public override string Eat() => $"{Name} goes to bird seed tray and Peck peck peck";
-
     }
 
     class Fish : Pet
@@ -70,7 +69,6 @@ namespace PetSimulator.OopCode
         public override string Walk() => $"{Name} says \"What?!?!\" swishes tail and swims away";
         public override string Sleep() => $"{Name} levitate in water and stare blankly";
         public override string Eat() => $"{Name} approach surface and gulp.";
-
     }
 
 }
