@@ -30,6 +30,7 @@
         {
             this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.sampleModePanel = new System.Windows.Forms.Panel();
+            this.loadButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.oopModeRadioButton = new System.Windows.Forms.RadioButton();
             this.proceduralModeRadioButton = new System.Windows.Forms.RadioButton();
@@ -37,10 +38,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
+            this.petControlPanel = new System.Windows.Forms.Panel();
+            this.petListBox = new System.Windows.Forms.ListBox();
+            this.petActionListBox = new System.Windows.Forms.ListBox();
+            this.createPetButton = new System.Windows.Forms.Button();
+            this.performActionButton = new System.Windows.Forms.Button();
+            this.petNameLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.mainTableLayoutPanel.SuspendLayout();
             this.sampleModePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.petControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTableLayoutPanel
@@ -51,6 +60,7 @@
             this.mainTableLayoutPanel.Controls.Add(this.sampleModePanel, 0, 1);
             this.mainTableLayoutPanel.Controls.Add(this.panel1, 0, 0);
             this.mainTableLayoutPanel.Controls.Add(this.flowLayoutPanel1, 0, 2);
+            this.mainTableLayoutPanel.Controls.Add(this.petControlPanel, 1, 1);
             this.mainTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.mainTableLayoutPanel.Name = "mainTableLayoutPanel";
@@ -63,6 +73,7 @@
             // 
             // sampleModePanel
             // 
+            this.sampleModePanel.Controls.Add(this.loadButton);
             this.sampleModePanel.Controls.Add(this.label1);
             this.sampleModePanel.Controls.Add(this.oopModeRadioButton);
             this.sampleModePanel.Controls.Add(this.proceduralModeRadioButton);
@@ -71,6 +82,16 @@
             this.sampleModePanel.Name = "sampleModePanel";
             this.sampleModePanel.Size = new System.Drawing.Size(244, 510);
             this.sampleModePanel.TabIndex = 0;
+            // 
+            // loadButton
+            // 
+            this.loadButton.Location = new System.Drawing.Point(115, 133);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(112, 41);
+            this.loadButton.TabIndex = 3;
+            this.loadButton.Text = "&Load";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // label1
             // 
@@ -144,6 +165,72 @@
             this.closeButton.Text = "&Close";
             this.closeButton.UseVisualStyleBackColor = true;
             // 
+            // petControlPanel
+            // 
+            this.petControlPanel.Controls.Add(this.textBox1);
+            this.petControlPanel.Controls.Add(this.petNameLabel);
+            this.petControlPanel.Controls.Add(this.performActionButton);
+            this.petControlPanel.Controls.Add(this.createPetButton);
+            this.petControlPanel.Controls.Add(this.petActionListBox);
+            this.petControlPanel.Controls.Add(this.petListBox);
+            this.petControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.petControlPanel.Location = new System.Drawing.Point(253, 117);
+            this.petControlPanel.Name = "petControlPanel";
+            this.petControlPanel.Size = new System.Drawing.Size(734, 510);
+            this.petControlPanel.TabIndex = 3;
+            // 
+            // petListBox
+            // 
+            this.petListBox.FormattingEnabled = true;
+            this.petListBox.ItemHeight = 25;
+            this.petListBox.Location = new System.Drawing.Point(7, 7);
+            this.petListBox.Name = "petListBox";
+            this.petListBox.Size = new System.Drawing.Size(273, 154);
+            this.petListBox.TabIndex = 0;
+            // 
+            // petActionListBox
+            // 
+            this.petActionListBox.FormattingEnabled = true;
+            this.petActionListBox.ItemHeight = 25;
+            this.petActionListBox.Location = new System.Drawing.Point(7, 306);
+            this.petActionListBox.Name = "petActionListBox";
+            this.petActionListBox.Size = new System.Drawing.Size(273, 154);
+            this.petActionListBox.TabIndex = 1;
+            // 
+            // createPetButton
+            // 
+            this.createPetButton.Location = new System.Drawing.Point(131, 206);
+            this.createPetButton.Name = "createPetButton";
+            this.createPetButton.Size = new System.Drawing.Size(149, 34);
+            this.createPetButton.TabIndex = 2;
+            this.createPetButton.Text = "Create Pet";
+            this.createPetButton.UseVisualStyleBackColor = true;
+            // 
+            // performActionButton
+            // 
+            this.performActionButton.Location = new System.Drawing.Point(131, 466);
+            this.performActionButton.Name = "performActionButton";
+            this.performActionButton.Size = new System.Drawing.Size(149, 34);
+            this.performActionButton.TabIndex = 3;
+            this.performActionButton.Text = "Perform Action";
+            this.performActionButton.UseVisualStyleBackColor = true;
+            // 
+            // petNameLabel
+            // 
+            this.petNameLabel.AutoSize = true;
+            this.petNameLabel.Location = new System.Drawing.Point(10, 172);
+            this.petNameLabel.Name = "petNameLabel";
+            this.petNameLabel.Size = new System.Drawing.Size(63, 25);
+            this.petNameLabel.TabIndex = 4;
+            this.petNameLabel.Text = "Name:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(79, 169);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(201, 31);
+            this.textBox1.TabIndex = 5;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -158,6 +245,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.petControlPanel.ResumeLayout(false);
+            this.petControlPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -173,5 +262,13 @@
         private Label label2;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button closeButton;
+        private Button loadButton;
+        private Panel petControlPanel;
+        private TextBox textBox1;
+        private Label petNameLabel;
+        private Button performActionButton;
+        private Button createPetButton;
+        private ListBox petActionListBox;
+        private ListBox petListBox;
     }
 }

@@ -8,4 +8,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PetSimulator.OopCode\PetSimulator.OopCode.csproj" />
+    <ProjectReference Include="..\PetSimulator.ProcCode\PetSimulator.ProcCode.csproj" />
+    <ProjectReference Include="..\PetSimulator.UI.Abstractions\PetSimulator.UI.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
